@@ -25,8 +25,8 @@ Adafruit_BMP280 bmp;
 #define SCL_PIN 9
 
 // ------------------- WIFI -------------------
-const char* ssid = "PayoWifi"; //PON TU PROPIA RED WIFI
-const char* password = "elpayocabra"; //PON LA CONTRASEÑA DE TU RED WIFI
+const char* ssid = "******"; //PON TU PROPIA RED WIFI <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< OJO AQUÍ!
+const char* password = "******"; //PON LA CONTRASEÑA DE TU RED WIFI <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< OJO AQUÍ!
 WebServer server(80);
 
 // ------------------- VARIABLES GLOBALES -------------------
@@ -228,13 +228,13 @@ void loop() {
 
   sensors_event_t a, g, temp;
   mpu.getEvent(&a, &g, &temp);
-  roll  = -atan2(a.acceleration.y, a.acceleration.z) * 57.3;
+  roll  = -atan2(a.acceleration.y, a.acceleration.z) * 57.3; // MODIFICA AQUÍ SEGÚN HAYAS MONTADO TU MPU6050 PARA OBTENER VALORES POSITIVOS CUANDO SUBES EL TELESCOPIO. EL SIGNO MENOS ESTÁ INVIRTIENDO LA INCLINACIÓN, PUEDES QUITARLO
   pitch = atan(-a.acceleration.x /
                sqrt(a.acceleration.y * a.acceleration.y + a.acceleration.z * a.acceleration.z)) * 57.3;
   tempMPU = temp.temperature;
 
   compass.read();
-  heading = (compass.getAzimuth() + 180) % 360;
+  heading = (compass.getAzimuth() + 180) % 360;  // MODIFICA AQUÍ SEGÚN HAYAS MONTADO TU BRÚJULA, ESTA ESTÁ GIRADA 180 GRADOS
 
   altitude = bmp.readAltitude(1013.25);
   tempBMP = bmp.readTemperature();
