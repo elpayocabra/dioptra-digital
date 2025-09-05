@@ -44,6 +44,8 @@ LISTA DE COMPONENTES
 -4 tornillos M2x6
 -4 tuercas de inserción M2 
 
+-No lleva batería, por lo que debemos conectarla a un powerbank!
+
 SOFTWARE
 --------------------------
 
